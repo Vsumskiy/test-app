@@ -1,0 +1,51 @@
+@import '../../../../css/vars.sass'
+
+.TestActive 
+  display: flex
+  justify-content: space-around
+  align-items: center
+  flex-direction: column
+  padding-bottom: 40px
+  width: 80vw
+  color: $fzColor
+  border-radius: 20px
+  position: relative
+  background: $whiteThemeColor
+  box-shadow:  $whiteThemeBoxShadow
+  .title 
+    display: flex
+    justify-content: space-between
+    width: 100%
+    padding: 20px 
+    .counter 
+      position: absolute
+      right: 0px
+      top: -24px
+    h3 
+      margin: 0
+      margin-left: 10px
+    span 
+      margin: 0
+      margin-right: 10px
+
+
+.TestActive.dark
+  background: $darkThemeColor
+  box-shadow:  $darkThemeBoxShadow
+
+
+@media screen and (max-width: 560px) 
+  .TestActive h3 
+    padding: 3px
+    font-size: 18px
+
+@media screen and (max-width: 420px) 
+  .TestActive h3 
+    padding: 2px
+    font-size: 13px
+    .title 
+      padding: 6px
+  
+
+
+

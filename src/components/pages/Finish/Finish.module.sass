@@ -1,0 +1,87 @@
+@import '../../../css/vars.sass'
+
+.Finish 
+  width: 100%
+  box-sizing: border-box
+  ul 
+    margin: 0
+    padding: 0
+    list-style-type: none
+    font-size: 18px
+    border-radius: 4px
+    z-index: 99
+    position: relative
+    height: 70vh
+    overflow-y: scroll
+    text-align: left
+    background: $whiteThemeColor
+    box-shadow:  $whiteThemeBoxShadow
+    li 
+      display: flex
+      justify-content: space-between
+      margin: 20px
+      padding: 15px
+      padding-left: 20px
+      border-radius: 4px
+      align-items: baseline
+      padding-left: 15px
+      color: black
+      font-weight: 600
+      background: $inputBgc
+      box-shadow: $inputWhiteThemeBoxSahdow
+      span 
+        font-size: 22px
+        font-weight: bold
+
+.Finish 
+  ul::-webkit-scrollbar  
+    width: 3px
+    height: 3px
+  ul::-webkit-scrollbar-track   
+    background-color: $inputBgc
+  ul::-webkit-scrollbar-track-piece  
+    background-color: $inputBgc
+  ul::-webkit-scrollbar-thumb  
+    height: 50px 
+    background-color: $whiteThemeColor 
+    border-radius: 3px
+
+.Finish.dark 
+  ul 
+    background: $darkThemeColor
+    box-shadow: $darkThemeBoxShadow
+    li 
+      box-shadow: $inputDarkThemeBoxSahdow
+
+.Finish.dark 
+  ul::-webkit-scrollbar-thumb  
+    background-color: $darkThemeColor
+  
+.done 
+  color: #27ae61;
+
+.error 
+  color: rgba(240, 87, 108, .7)
+
+@media screen and (max-width: 560px) 
+  .Finish 
+    h3
+      margin: 0
+      margin-bottom: 5px
+      z-index: 100
+      position: relative
+    ul li 
+      padding: 8px
+      padding-left: 14px
+      span 
+        font-size: 18px
+        font-weight: bold
+      a 
+        font-weight: bold
+        color: #fff
+        text-decoration: none
+
+@media screen and (max-width: 560px) 
+  .Finish h3 
+    font-size: 14px
+  

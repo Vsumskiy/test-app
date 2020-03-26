@@ -1,0 +1,40 @@
+@import '../../../css/vars.sass'
+
+.TestList 
+  box-sizing: border-box
+  list-style-type: none
+  padding: 20px
+  box-shadow: $whiteThemeBoxShadow
+  color: $fzColor
+  border-radius: 46px
+  li
+    border-radius: 16px
+    box-shadow: $whiteThemeBoxShadow
+    padding: 10px 20px
+    margin: 20px 0
+    cursor: pointer
+    h4
+      margin: 0
+
+.TestList.dark
+  box-shadow: $darkThemeBoxShadow
+  .loading 
+    color: $fzColor
+    background: $darkThemeColor
+    box-shadow: $darkThemeBoxShadow
+  li
+    box-shadow: $darkThemeBoxShadow
+
+  
+.loading 
+  font-size: 20px
+  padding: 15px
+  color: $fzColor
+  border-radius: 46px
+  background: $whiteThemeColor
+  box-shadow: $whiteThemeBoxShadow
+
+.loading.dark
+    color: $fzColor
+    background: $darkThemeColor
+    box-shadow: $darkThemeBoxShadow

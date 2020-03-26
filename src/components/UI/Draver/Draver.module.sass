@@ -1,0 +1,35 @@
+@import '../../../css/vars.sass'
+
+.Draver 
+  display: flex
+  justify-content: center
+  align-items: center
+  flex-direction: column
+  position: absolute
+  width: 100%
+  z-index: 400
+  transition: transform .45s ease
+  transform: translateY(-200%)
+  
+.MenuToggle
+  position: absolute
+  bottom: -30%
+  cursor: pointer
+  color: $fzColor
+
+.Draver.active
+  transform: translateY(-50%)
+  .form
+    opacity: 1
+  
+.Draver.dark.active
+  transform: translateY(-50%)
+
+.Draver.dark
+  transform: translateY(-200%)
+  .form
+    background: $darkThemeColor
+    input
+      box-shadow: $inputDarkThemeBoxSahdow
+    span  
+      box-shadow: $darkThemeBoxShadow

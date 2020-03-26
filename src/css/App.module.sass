@@ -1,0 +1,64 @@
+@import "vars.sass"
+
+.App
+  text-align: center
+  background-color: $whiteThemeColor
+  position: relative
+  h2
+    color: $fzColor
+    font-size: 15px
+    position: absolute
+    left: 20px
+    padding: 15px
+    border-radius: 46px
+    background: $whiteThemeColor
+    box-shadow: $whiteThemeBoxShadow
+  a i
+    color: $fzColor
+    z-index: 200
+    font-size: 20px
+    position: fixed
+    left: 20px
+    bottom: 10px
+    padding: 15px
+    border-radius: 16px
+    background: $whiteThemeColor
+    box-shadow: $whiteThemeBoxShadow
+  .chanage
+    z-index: 200
+    border: none
+    outline: none
+    font-size: 20px
+    cursor: pointer
+    position: absolute
+    right: 20px
+    top: 10px
+    padding: 15px
+    color: #fff
+    border-radius: 16px
+    background: $whiteThemeColor
+    box-shadow: $whiteThemeBoxShadow
+
+.App.dark
+  background-color: $darkThemeColor
+  h2
+    background: $darkThemeColor
+    box-shadow: $darkThemeBoxShadow
+  a i
+    background: $darkThemeColor
+    box-shadow: $darkThemeBoxShadow
+  .chanage
+    background: $darkThemeColor
+    box-shadow: $darkThemeBoxShadow
+
+@media screen and (max-width: 560px)
+  .App h2
+    padding: 8px
+    font-size: 13px
+
+@media screen and (max-width: 560px)
+  .App a i
+    padding: 8px
+
+  .App .chanage i
+    padding: 0px
