@@ -4,7 +4,7 @@ import axios from 'axios'
 export async function sendResults(test) {
   
   try {
-   await axios.post('https://dataBase.json', test)
+   await axios.post('database.json', test)
   } catch(e) {
     console.log(e);
   }
@@ -14,7 +14,7 @@ export async function sendResults(test) {
 export async function getResults(testItems) {
   let responseTest = {...testItems};
     try {
-      const response = await axios.get('https://dataBase.json')
+      const response = await axios.get('database.json')
       
       Object.keys(response.data).forEach((id, index) => {
         responseTest.tests.push({
@@ -35,7 +35,7 @@ export async function getResults(testItems) {
 //remove one test item from 'Results' page
 export async function removeHandler(id) {
   try {
-    await axios.delete(`https://dataBase.json/${id}.json`)
+    await axios.delete(`database/${id}.json`)
   } 
   catch(e) {
     console.log(e);
@@ -47,7 +47,7 @@ export async function getAdminData(userData) {
   let responseUserData = {...userData};
 
   try {
-    const response = await axios.get('https://dataBase.json')
+    const response = await axios.get('database.json')
     responseUserData.name = response.data.name;
     responseUserData.pass = response.data.password;
    return responseUserData
@@ -61,7 +61,7 @@ export async function getAdminData(userData) {
 export async function getTest() {
   let res;
   try {
-   const response = await axios.get('https://dataBase.json')
+   const response = await axios.get('database.json')
     res = {
       testList: response.data
     }
@@ -72,10 +72,9 @@ export async function getTest() {
 }
 
 
-
 export async function setTest(test, name) {
   try {
-   await axios.post('https://dataBase.json',{...test, name:name})
+   await axios.post('database.json',{...test, name:name})
   } catch(e) {
     console.log(e);
   }

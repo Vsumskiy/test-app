@@ -10,6 +10,7 @@ class Main extends Component {
     promuterSurname: '',
     promuterEmail: '',
     validateEmail: false,
+    alert: false
   }
 
   startTest = (e) => {
@@ -18,7 +19,7 @@ class Main extends Component {
     if (promuterName.length >= 3 && promuterSurname.length >= 3 && validateEmail) {//!
       this.setState({promuterEnter: true})
     } else {
-      alert("Данні введено не вірно")
+      this.props.showAlert(null, 'Данні введено не вірно!','error')
     }
   }
 
@@ -38,7 +39,7 @@ class Main extends Component {
   }
 
   render() {
-    const cls = [classes.Main, this.props.balckTheme?classes.dark:null]
+    const cls = [classes.Main, this.props.blackTheme?classes.dark:null]
     return (
     <main className={cls.join(' ')}>
       {this.props.children}
@@ -63,7 +64,7 @@ class Main extends Component {
       </form>
       :<TestList
         email={this.state.promuterEmail}
-        balckTheme={this.props.balckTheme}
+        blackTheme={this.props.blackTheme}
         surname={this.state.promuterSurname}
         name={this.state.promuterName}
       />

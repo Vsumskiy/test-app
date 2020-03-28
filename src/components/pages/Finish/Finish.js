@@ -20,7 +20,7 @@ useEffect(() => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
 },[])
 
-  const cls = [classes.Finish, props.balckTheme?classes.dark:null]
+  const cls = [classes.Finish, props.blackTheme?classes.dark:null]
   return (
     <div className={cls.join(' ')}>
       <h3>Правильно: {props.rightAnswer} з  {props.questions.length}</h3>

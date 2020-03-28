@@ -1,8 +1,8 @@
 import React from 'react';
 import classes from './TestItems.module.sass'
 
-const TestItems = ({ balckTheme, answers,  nextQuestionHandler }) => {
-  const cls = [classes.TestItems, balckTheme?classes.dark:null]
+const TestItems = ({ blackTheme, answers,  nextQuestionHandler }) => {
+  const cls = [classes.TestItems, blackTheme?classes.dark:null]
   return (
     <>
     <ul className={cls.join(' ')}>

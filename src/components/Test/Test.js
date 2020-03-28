@@ -73,7 +73,7 @@ export default class Test extends Component {
         
       {this.state.aciveQuestion < this.state.testList.length
       ?<TestActive
-        balckTheme={this.props.balckTheme}
+        blackTheme={this.props.blackTheme}
         counter={this.counter}
         testList={this.state.testList[this.state.aciveQuestion]}
         testListCount={this.state.testList.length}
@@ -82,7 +82,7 @@ export default class Test extends Component {
       />
       :<Finish 
         nameTest={this.props.nameTest}
-        balckTheme={this.props.balckTheme}
+        blackTheme={this.props.blackTheme}
         rightAnswer={this.state.countAnswer}
         questions={this.state.testList}
         email={this.props.email}

@@ -2,10 +2,10 @@ import React, {useEffect} from 'react';
 import classes from './TestActive.module.sass'
 import TestItems from '../TestItems'
 
-const TestActive = ({counter, balckTheme, testList, aciveQuestion, testListCount, nextQuestionHandler}) => {
+const TestActive = ({counter, blackTheme, testList, aciveQuestion, testListCount, nextQuestionHandler}) => {
   useEffect(counter,[])
 
-  const cls = [classes.TestActive, balckTheme?classes.dark:null]
+  const cls = [classes.TestActive, blackTheme?classes.dark:null]
   return (
     <div className={cls.join(' ')}>
       <div className={classes.title}> 
@@ -17,7 +17,7 @@ const TestActive = ({counter, balckTheme, testList, aciveQuestion, testListCount
         </div> 
       </div>
       <TestItems 
-      balckTheme={balckTheme}
+      blackTheme={blackTheme}
       nextQuestionHandler={nextQuestionHandler}
       answers={testList.answers} />
     </div>

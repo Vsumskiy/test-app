@@ -4,7 +4,6 @@ import classes from './TestCreator.module.sass'
 import { setTest } from '../../../Axios/AxiosQuery'
 import Select from '../../UI/Select/Select'
 
-
 class TestCreator extends React.Component {
   state = {
     testList: [],
@@ -48,9 +47,8 @@ class TestCreator extends React.Component {
     const testList = this.state.testList.concat()
     const index = testList.length + 1
     const {question, answer1, answer2,answer3, rightAnswer} = this.state
-    console.log(!question);
     if (!question || !answer1 || !answer2 || !answer3) {
-      alert('Поле не може бути пустим!')
+      this.props.showAlert(null, 'Для створення тесту, усі поля мають бути заповнені!','error')
       return;
     }
     
@@ -75,12 +73,12 @@ class TestCreator extends React.Component {
       testList,
       rightAnswer: 1,
     })
-    window.alert("Питання створено!")
+    this.props.showAlert(null, '"Питання створено!"','succes')
   }
 
   createTest = () => {
     if (!this.state.name) {
-      alert('Назва тесту не може бути пуста')
+      this.props.showAlert(null, 'Для створення тесту, тест має мати назву!','error')
       return;
     }
 
@@ -96,7 +94,7 @@ class TestCreator extends React.Component {
       rightAnswer: 1,
       id: null
     })
-    window.alert("Тест створено!")
+    this.props.showAlert(null, "Тест створено!",'succes')
   }
 
   render () {
@@ -111,13 +109,13 @@ class TestCreator extends React.Component {
       ]}
     />
     
-  const cls = [classes.TestCreator, this.props.balckTheme?classes.dark:null]
+  const cls = [classes.TestCreator, this.props.blackTheme?classes.dark:null]
     return (
       <div className={cls.join(' ')}>
         <NavLink 
         className={classes.createLink}
         to={'/0936139517results2020'}>
-        Back
+        Назад
       </NavLink>
         <div className={classes.createNav}>
         <input type="text" placeholder="Введіть назву тесту" 

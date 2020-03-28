@@ -27,8 +27,8 @@ startTest = (isNonFilter, nameTest) => {
 }
 // start: true
 renderList = () => {
-  const cls = [classes.TestList, this.props.balckTheme?classes.dark:null]
-  const loading = [classes.loading, this.props.balckTheme?classes.dark:null]
+  const cls = [classes.TestList, this.props.blackTheme?classes.dark:null]
+  const loading = [classes.loading, this.props.blackTheme?classes.dark:null]
   let result;
   if (this.state.loading) {
     result = <div 
@@ -52,7 +52,7 @@ render () {
   return (!this.state.start?this.renderList()
   :<Test
     email={this.props.email}
-    balckTheme={this.props.balckTheme}
+    blackTheme={this.props.blackTheme}
     surname={this.props.surname}
     name={this.props.name}
     nameTest={this.state.nameTest}

@@ -25,13 +25,14 @@ async componentDidMount() {
   //get results from BD
   await getResults(this.state.testItems)
     .then(testItems => {
-    let newArr = testItems.tests.sort(function(a,b){return a.email < b.email ? -1 : 1;}).reduce(function(arr, el){
-      if(!arr.length || arr[arr.length - 1].email !== el.email) {
-        arr.push(el);
+    let newArr = testItems.tests.sort((a,b) => a.email < b.email ? -1 : 1)
+                                .reduce((accamulator, element)=> {
+      if(!accamulator.length || accamulator[accamulator.length - 1].email !== element.email) {
+        accamulator.push(element);
       } else {
-        removeHandler(el.id)
+        removeHandler(element.id)
       }
-      return arr;
+      return accamulator;
     }, []);
     testItems.tests = [...newArr]
     this.setState({testItems})
@@ -41,17 +42,18 @@ async componentDidMount() {
 removeUserItemHandler = (id ,event) => {
   let isRemove = window.confirm('Видалити результат?')
     if (isRemove) {
+      this.props.showAlert(null, "Резульат видалено!",'succes')
       event.target.closest('ul').style.transform = 'translate(-200%)'
       this.remove(event.target.closest('ul'))
       removeHandler(id)
     }
-}
+  }
 
   remove(target) {
     setTimeout(()=> {target.remove()}, 450)
   }
 
-  renderResults=   () => {
+  renderResults = () => {
     let result;
     
     const answerItem = (
@@ -59,7 +61,7 @@ removeUserItemHandler = (id ,event) => {
         let id = answerItem.id
         let userInfo = answerItem.userInfo
 
-      return (  
+      return ( 
         <ul key={id}>
           <div>
           <h3>{userInfo.name}</h3>
@@ -85,8 +87,8 @@ removeUserItemHandler = (id ,event) => {
             })}
         </ul>
       )
-      })
-    )
+    })
+  )
 
   const preloader = (<div 
     className={classes.loading}>
@@ -107,7 +109,7 @@ removeUserItemHandler = (id ,event) => {
 }
 
 render() {
-  const cls = [classes.Results, this.props.balckTheme?classes.dark:null]
+  const cls = [classes.Results, this.props.blackTheme?classes.dark:null]
   return (
   <div className={cls.join(' ')}> 
     <NavLink 
@@ -115,6 +117,12 @@ render() {
       to={'/TestCreator'}>
       +
     </NavLink>
+    {this.state.testItems.loading || this.state.testItems.emptyDB
+    ?null
+    :<p className={classes.countUser}>
+     Пройшло <strong>{this.state.testItems.tests.length}</strong>  учасника
+      </p>}
+    
     {this.renderResults()} 
   </div> )
   }

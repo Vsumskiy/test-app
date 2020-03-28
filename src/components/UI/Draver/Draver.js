@@ -21,16 +21,17 @@ return (
 
   const clsD = [
     classes.Draver, props.openAdm?classes.active:null,
-    props.balckTheme?classes.dark:null
+    props.blackTheme?classes.dark:null
   ]
 
   return ( 
     <div className={clsD.join(' ')}>
       <Auth 
+      showAlert={props.showAlert}
       openDrawer={ props.openDrawer}
       isAdmin={props.isAdmin} 
       linkProps={props.linkProps}
-      balckTheme={props.balckTheme}
+      blackTheme={props.blackTheme}
       />
     {renderIcon()}
     </div>)

@@ -1,0 +1,27 @@
+@import '../../../css/vars.sass'
+
+.CustomAlert
+  position: fixed
+  left: 50%
+  top: 50%
+  transform: translateX(-50%) translateY(-50%)
+  z-index: 9999
+  min-width: 50vw
+  height: 25vh
+  border-radius: 30px
+  display: flex
+  justify-content: center
+  align-items: center
+  i 
+    position: absolute
+    right: -20px
+    top: 0
+    cursor: pointer
+
+.CustomAlert.error
+  background: rgba(240, 87, 108, .7)
+  color: #fff
+
+.CustomAlert.succes
+  background: rgba(161, 240, 69, .7)
+  color: #fff

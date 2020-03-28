@@ -5,19 +5,37 @@ import Draver from './components/UI/Draver/Draver'
 import Fade from './components/UI/Fade/Fade'
 import Results from './components/pages/Results/Results'
 import {Route, Switch} from 'react-router-dom'
+import { CustomAlert } from './components/UI/CustomAlert/CustomAlert'
 import TestCreator from './components/pages/TestCreator/TestCreator';
 
 class App extends React.Component {
   state = {
-    balckTheme: false,
+    blackTheme: false,
     openAdm: false,
     isAdmin: false,
+    alertOptions: {
+      alert: false,
+      auth: false,
+      titleError: '',
+      type: ''
+    }
   } 
 
-  changeTheme = () => {
-    let balckTheme = this.state.balckTheme;
+  componentDidMount = () => {
+    const blackTheme = localStorage.getItem('theme')
+    
+    this.setState({blackTheme: !!blackTheme})
+  }
 
-    this.setState({balckTheme: !balckTheme})
+  changeTheme = () => {
+    let blackTheme = this.state.blackTheme;
+    if (blackTheme) {
+      localStorage.setItem('theme', '')
+    } else {
+      localStorage.setItem('theme', true)
+    }
+    
+    this.setState({blackTheme: !blackTheme})
   }
 
   openDrawer = () => {
@@ -29,11 +47,30 @@ class App extends React.Component {
     this.setState({isAdmin: true})
   }
 
+  showAlert = (auth,titleError, type) => {
+    let alert = this.state.alertOptions.alert
+    let alertOptions = {
+      alert: !alert,
+      auth,
+      titleError, 
+      type
+    }
+    this.setState({alertOptions})
+  }
+
   render () {
-    const cls = [classes.App, this.state.balckTheme?classes.dark:null]
+    const cls = [classes.App, this.state.blackTheme?classes.dark:null]
 
     return (
+      
     <div className={cls.join(' ')}>
+    {this.state.alertOptions.alert
+      ?<CustomAlert 
+        titleError={this.state.alertOptions.titleError}
+        auth={this.state.alertOptions.auth}
+        showAlert={this.showAlert}
+        type={this.state.alertOptions.type}/>
+      :null}
       <h2>Philips Test</h2>
       <button className={classes.chanage}
        onClick={this.changeTheme} >
@@ -47,28 +84,33 @@ class App extends React.Component {
         <Route path='/0936139517results2020'
          render={(props) => 
          <Results 
-         balckTheme={this.state.balckTheme} 
+         blackTheme={this.state.blackTheme} 
          isAdmin={this.state.isAdmin}
          linkProps={props}
+         showAlert={this.showAlert}
          />} />
-
 
         <Route path='/TestCreator'
          render={(props) => 
          <TestCreator 
-         balckTheme={this.state.balckTheme} 
+         blackTheme={this.state.blackTheme} 
          isAdmin={this.state.isAdmin}
          linkProps={props}
+         showAlert={this.showAlert}
          />} />
 
         <Route path='/' render={(props) => 
-        <Main balckTheme={this.state.balckTheme}> 
+        <Main 
+        blackTheme={this.state.blackTheme}
+        showAlert={this.showAlert}
+          > 
         <Draver 
         openAdm={this.state.openAdm} 
-        balckTheme={this.state.balckTheme} 
+        blackTheme={this.state.blackTheme} 
         openDrawer={this.openDrawer}
         isAdmin={this.isAdmin}
         linkProps={props}
+        showAlert={this.showAlert}
       />
         </Main>}/>
       </Switch>

@@ -3,7 +3,6 @@ import classes from './Auth.module.sass'
 import { getAdminData } from '../../Axios/AxiosQuery'
 
 class Auth extends React.Component {
-
    state = {
     userData : {
     name : '',
@@ -11,7 +10,7 @@ class Auth extends React.Component {
     },
     enteredName: '',
     enteredPass: '',
-    goToAdm: false
+    goToAdm: false,
   }
 
  async componentDidMount () {
@@ -31,6 +30,8 @@ class Auth extends React.Component {
       this.props.linkProps.history.push('/0936139517results2020')
       this.props.isAdmin()
       this.props.openDrawer()
+    } else {
+      this.props.showAlert(true, 'Авторизація не пройдена!','error')
     }
   }
 
@@ -46,7 +47,7 @@ class Auth extends React.Component {
 
   render() {
   const cls = [
-    classes.Auth,this.props.balckTheme?classes.dark:null ]
+    classes.Auth,this.props.blackTheme?classes.dark:null ]
 
   return (
       <div className={cls.join(' ')}>
