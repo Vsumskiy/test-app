@@ -11,20 +11,20 @@ export default class Test extends Component {
     questionTime: 30000,
     lodaing: true,
 
-    testList: []
+    testList: [] // array with all test questions and right answers
   }
 
+  //waiting for test object from DB
   componentDidMount = async () => {
     let testL = []
     this.props.testList.forEach(element => {
       testL.push( element )
     });
-    
     this.setState({testList:testL[0] , lodaing: false})
   }
 
+  // counter for test next question 
   nextQuestionHandler = id => {
-
     clearInterval(this.state.intervalId)
     let { aciveQuestion, countAnswer } = this.state;
     let answerid = this.state.testList[this.state.aciveQuestion].rightAnswer;
@@ -33,8 +33,8 @@ export default class Test extends Component {
       this.setState({
         countAnswer: countAnswer+1
       })
+      //if answer true, adding a key {curret: true}
     curretAnswer.curret = true;
-      
     }
     this.setState({
       aciveQuestion: aciveQuestion+1,
@@ -47,6 +47,7 @@ export default class Test extends Component {
     clearInterval(this.state.intervalId)
   }
 
+  //visible counter
   counter = () => {
     let intervalId =  setInterval(() => {
       let aciveQuestion = this.state.aciveQuestion;
@@ -66,11 +67,14 @@ export default class Test extends Component {
       result = (
         <div className={classes.Test}>
         <h1>{this.props.surname}  {this.props.name}</h1>
-
+        {
+        // if active questin not equally test list length, show next question and, 
+        // else show finish page with all results
+        }
         {this.state.aciveQuestion !== this.state.testList.length
         ?<Countdown date={Date.now() + this.state.questionTime} />
         :null}
-        
+      
       {this.state.aciveQuestion < this.state.testList.length
       ?<TestActive
         blackTheme={this.props.blackTheme}

@@ -13,6 +13,7 @@ state = {
   curretTest : []
 }
 
+//waiting test list from data base
 componentDidMount() {
     getTest().then(data => {
       let list = Object.values(data.testList)
@@ -21,11 +22,11 @@ componentDidMount() {
   )
 }
 
+//checking a different type in obj from DB
 startTest = (isNonFilter, nameTest) => {
  let curretTest = isNonFilter.filter(e => typeof e !=='string')
   this.setState({curretTest, nameTest,start: true})
 }
-// start: true
 renderList = () => {
   const cls = [classes.TestList, this.props.blackTheme?classes.dark:null]
   const loading = [classes.loading, this.props.blackTheme?classes.dark:null]

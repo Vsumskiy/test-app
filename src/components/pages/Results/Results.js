@@ -1,6 +1,5 @@
 import React from 'react';
 import classes from './Results.module.sass'
-import { NavLink } from 'react-router-dom'
 import { getResults, removeHandler } from '../../../Axios/AxiosQuery'
 
 class Results extends React.Component {
@@ -16,21 +15,23 @@ class Results extends React.Component {
     }
   }
 
-async componentDidMount() {
+componentDidMount() {
+  // if is admin from Main not true return to Main page
    if(!this.props.isAdmin) {
      this.props.linkProps.history.push('/')
       return
     }
-
   //get results from BD
-  await getResults(this.state.testItems)
+  getResults(this.state.testItems)
     .then(testItems => {
     let newArr = testItems.tests.sort((a,b) => a.email < b.email ? -1 : 1)
                                 .reduce((accamulator, element)=> {
       if(!accamulator.length || accamulator[accamulator.length - 1].email !== element.email) {
         accamulator.push(element);
+
       } else {
-        removeHandler(element.id)
+        //clear DB and page from equally email user
+        removeHandler(element.id, 'answers')
       }
       return accamulator;
     }, []);
@@ -43,9 +44,8 @@ removeUserItemHandler = (id ,event) => {
   let isRemove = window.confirm('Видалити результат?')
     if (isRemove) {
       this.props.showAlert(null, "Резульат видалено!",'succes')
-      event.target.closest('ul').style.transform = 'translate(-200%)'
       this.remove(event.target.closest('ul'))
-      removeHandler(id)
+      removeHandler(id, 'answers')
     }
   }
 
@@ -110,13 +110,9 @@ removeUserItemHandler = (id ,event) => {
 
 render() {
   const cls = [classes.Results, this.props.blackTheme?classes.dark:null]
+  // if we dont have results from DB show preloader else show content
   return (
   <div className={cls.join(' ')}> 
-    <NavLink 
-      className={classes.createLink}
-      to={'/TestCreator'}>
-      +
-    </NavLink>
     {this.state.testItems.loading || this.state.testItems.emptyDB
     ?null
     :<p className={classes.countUser}>

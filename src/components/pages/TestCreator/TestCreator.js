@@ -1,5 +1,4 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
 import classes from './TestCreator.module.sass'
 import { setTest } from '../../../Axios/AxiosQuery'
 import Select from '../../UI/Select/Select'
@@ -17,6 +16,14 @@ class TestCreator extends React.Component {
     id: null
   }
 
+  //if is admin from Main false return to main page
+  componentDidMount = () => {
+    if(!this.props.isAdmin) {
+      this.props.linkProps.history.push('/')
+       return
+     }
+  }
+
   name = ({ target }) => {
     let name = target.value
     this.setState({name})    
@@ -25,8 +32,7 @@ class TestCreator extends React.Component {
     let question = target.value
     this.setState({question}) 
   }  
-
-   answer1 = ({ target }) => {
+  answer1 = ({ target }) => {
     let answer1 = target.value
     this.setState({answer1}) 
   } 
@@ -43,6 +49,8 @@ class TestCreator extends React.Component {
     this.setState({rightAnswer: +event.target.value})
   }
 
+  // set questions, in state i create array(testList),
+  // and this function im pushing in array(testList) one object with test data
   setQuestion = () => {
     const testList = this.state.testList.concat()
     const index = testList.length + 1
@@ -73,9 +81,10 @@ class TestCreator extends React.Component {
       testList,
       rightAnswer: 1,
     })
-    this.props.showAlert(null, '"Питання створено!"','succes')
+    this.props.showAlert(null, 'Питання створено!','succes')
   }
 
+  //here send testList to data base and clear state 
   createTest = () => {
     if (!this.state.name) {
       this.props.showAlert(null, 'Для створення тесту, тест має мати назву!','error')
@@ -112,11 +121,6 @@ class TestCreator extends React.Component {
   const cls = [classes.TestCreator, this.props.blackTheme?classes.dark:null]
     return (
       <div className={cls.join(' ')}>
-        <NavLink 
-        className={classes.createLink}
-        to={'/0936139517results2020'}>
-        Назад
-      </NavLink>
         <div className={classes.createNav}>
         <input type="text" placeholder="Введіть назву тесту" 
           onChange={this.name}

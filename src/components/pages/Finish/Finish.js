@@ -4,6 +4,7 @@ import { sendResults } from '../../../Axios/AxiosQuery'
 
 const Finish = props => {
 
+  // making a new object with test
 useEffect(() => {
   props.isFinish()
   const test = []

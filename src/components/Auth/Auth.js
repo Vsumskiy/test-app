@@ -13,13 +13,15 @@ class Auth extends React.Component {
     goToAdm: false,
   }
 
- async componentDidMount () {
-    await getAdminData(this.state.userData).then(userData => {
+  //waiting from DB login and pass
+ componentDidMount () {
+    getAdminData(this.state.userData).then(userData => {
       this.setState({userData})
       }
     );
  }
 
+ //in here, if entered name and pass === name and pass from DB isAdmin from Main === true
    goToAdmHandler = () => {
     const name =  this.state.userData.name
     const enteredName = this.state.enteredName
@@ -27,9 +29,8 @@ class Auth extends React.Component {
     const enteredPass = this.state.enteredPass
       
     if (enteredName === name && enteredPass === pass) {
-      this.props.linkProps.history.push('/0936139517results2020')
       this.props.isAdmin()
-      this.props.openDrawer()
+      this.props.showAlert(true, 'Авторизація пройдена!','succes')
     } else {
       this.props.showAlert(true, 'Авторизація не пройдена!','error')
     }
@@ -54,13 +55,15 @@ class Auth extends React.Component {
         <input 
         placeholder='Логін'
         onChange={this.checkedName}
-        value={this.state.enteredName} 
+        value={this.state.enteredName}
+        className={classes.enertInp} 
         />
         <input 
         placeholder='Пароль'
         type='password'
         onChange={this.checkedPass}
-        value={this.state.enteredPass} 
+        value={this.state.enteredPass}
+        className={classes.enertInp} 
         />
         <span 
         onClick={this.goToAdmHandler}>

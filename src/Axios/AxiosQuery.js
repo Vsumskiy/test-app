@@ -33,9 +33,9 @@ export async function getResults(testItems) {
 }
 
 //remove one test item from 'Results' page
-export async function removeHandler(id) {
+export async function removeHandler(id, url) {
   try {
-    await axios.delete(`database/${id}.json`)
+    await axios.delete(`database/${url}/${id}.json`)
   } 
   catch(e) {
     console.log(e);

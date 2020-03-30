@@ -4,7 +4,7 @@ import classes from './CustomAlert.module.sass'
 
 export const CustomAlert = props => {
  const cls = [classes.CustomAlert, props.type==='error'?classes.error: classes.succes]
- 
+ //alert showing only with fade
   return (
     <>
     <Fade openDrawer={props.showAlert} auth={props.auth}/>

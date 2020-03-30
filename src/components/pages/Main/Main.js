@@ -33,6 +33,7 @@ class Main extends Component {
     this.setState({ promuterSurname })
   }
 
+  // in this event, i`m using is.js library
   emailHandler = ({ target }) => {
     let promuterEmail = target.value;
     this.setState({ promuterEmail, validateEmail: is.email(target.value)})
@@ -44,6 +45,7 @@ class Main extends Component {
     <main className={cls.join(' ')}>
       {this.props.children}
       {!this.state.promuterEnter?
+      // if all inputs checked, and click button(starTtes), show TestList
       <form className={classes.reg}>
         <input 
         placeholder={'Email'} 

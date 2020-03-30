@@ -5,11 +5,11 @@
   justify-content: center
   align-items: center
   flex-direction: column
-  position: absolute
+  position: fixed
+  top: -40%
   width: 100%
   z-index: 801
   transition: transform .45s ease
-  transform: translateY(-200%)
   
 .MenuToggle
   position: absolute
@@ -18,18 +18,25 @@
   color: $fzColor
 
 .Draver.active
-  transform: translateY(-50%)
+  transform: translateY(150%)
   .form
     opacity: 1
   
 .Draver.dark.active
-  transform: translateY(-50%)
+    transform: translateY(150%)
 
 .Draver.dark
-  transform: translateY(-200%)
+  // transform: translateY(-200%)
+  top: -40%
   .form
     background: $darkThemeColor
     input
       box-shadow: $inputDarkThemeBoxSahdow
     span  
       box-shadow: $darkThemeBoxShadow
+
+@media screen and (max-width: 520px)
+  .Draver 
+    top: -42%
+  .Draver.dark
+    top: -42%

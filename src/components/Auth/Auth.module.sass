@@ -3,16 +3,14 @@
 .Auth
   background: $whiteThemeColor
   display: flex
-  justify-content: center
   align-items: center
   width: 80%
   height: 30vh
   padding: 15px
   border-radius: 10px
-  display: flex
   justify-content: center
   flex-direction: column
-  input
+  .enertInp
     margin-bottom: 20px
     height: 30px
     outline: none
@@ -38,8 +36,12 @@
 
 .Auth.dark
     background: $darkThemeColor
-    input
+    .enertInp
       box-shadow: $inputDarkThemeBoxSahdow
     span  
       box-shadow: $darkThemeBoxShadow
   
+.remember
+  color: #fff
+  align-self: flex-start
+  margin-left: 5%

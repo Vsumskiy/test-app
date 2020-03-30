@@ -1,8 +1,8 @@
 import React  from 'react'
-import classes from './Draver.module.sass'
-import Auth from '../../Auth/Auth'
+import classes from './Drawer.module.sass'
 
-const Draver = props => {
+const Drawer = props => {
+  //togle classes to icon
   const renderIcon = () => {
     const clsIcon = [
     classes.MenuToggle,'fa']
@@ -18,22 +18,14 @@ return (
       >
       </i>)
   }
-
   const clsD = [
     classes.Draver, props.openAdm?classes.active:null,
-    props.blackTheme?classes.dark:null
   ]
 
   return ( 
     <div className={clsD.join(' ')}>
-      <Auth 
-      showAlert={props.showAlert}
-      openDrawer={ props.openDrawer}
-      isAdmin={props.isAdmin} 
-      linkProps={props.linkProps}
-      blackTheme={props.blackTheme}
-      />
+    {props.children}
     {renderIcon()}
     </div>)
 }
-export default  Draver
+export default  Drawer
