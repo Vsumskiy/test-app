@@ -1,6 +1,8 @@
 import React from 'react';
 import classes from './Results.module.sass'
 import { getResults, removeHandler } from '../../../Axios/AxiosQuery'
+import Loader from '../../UI/Loader/Loader'
+
 
 class Results extends React.Component {
   constructor() {
@@ -90,17 +92,13 @@ removeUserItemHandler = (id ,event) => {
     })
   )
 
-  const preloader = (<div 
-    className={classes.loading}>
-      <p>Завантаження...</p></div>)
-
   const emptyDB = (<p className={classes.emptyDB}>Ще немає жодного результата</p>)
 
   if (this.state.testItems.emptyDB) {
     result = emptyDB
   }
   else if (this.state.testItems.loading) {
-    result = preloader;
+    result = <Loader />;
   } 
   else {
     result = answerItem

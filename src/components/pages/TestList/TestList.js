@@ -2,6 +2,7 @@ import React from 'react'
 import classes from './TestList.module.sass'
 import { getTest } from '../../../Axios/AxiosQuery'
 import Test from '../../Test/Test'
+import Loader from '../../UI/Loader/Loader'
 
 class TestList extends React.Component  {
 
@@ -29,14 +30,10 @@ startTest = (isNonFilter, nameTest) => {
 }
 renderList = () => {
   const cls = [classes.TestList, this.props.blackTheme?classes.dark:null]
-  const loading = [classes.loading, this.props.blackTheme?classes.dark:null]
-  let result;
   if (this.state.loading) {
-    result = <div 
-    className={loading.join(' ')}>
-      <p>Завантаження...</p></div>
+    return <Loader />
   } else {
-    result = <ul className={cls.join(' ')}>
+    return (<ul className={cls.join(' ')}>
             {this.state.list.map((testIitem, index)=>{
               return <li
               key={index}
@@ -44,9 +41,8 @@ renderList = () => {
                 <h4>{testIitem.name}</h4>
               </li>
             })}
-          </ul>  
-  }
-  return result
+          </ul>)
+    }
 }
 
 render () {

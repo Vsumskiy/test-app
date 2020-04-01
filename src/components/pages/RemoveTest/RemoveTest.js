@@ -1,6 +1,8 @@
 import React from 'react'
 import classes from './RemoveTest.module.sass'
 import { getTest, removeHandler } from '../../../Axios/AxiosQuery'
+import Loader from '../../UI/Loader/Loader'
+
 
 class RemoveTest extends React.Component {
   state = {
@@ -38,22 +40,21 @@ render() {
   const cls = [classes.RemoveTest, this.props.blackTheme?classes.dark:null]
 
   return <div className={cls.join(' ')}>
-    {!this.state.loading
-    ?<ul>
+    {
+    this.state.loading
+    ?<Loader />
+    : <ul>
        {this.state.testData.map((testNames, index) => {
          return (
-           <li 
-           key={testNames.id + index}
-           >
+           <li key={testNames.id + index}>
              {testNames.name}
-             <i className={`fas fa-trash-alt`} onClick={(event) => this.removeTest(testNames.id, event)}></i>
+             <i className={`fas fa-trash-alt`} 
+                onClick={(event) => this.removeTest(testNames.id, event)}></i>
            </li>
-         )
-       })}
-     </ul>
-     :<div 
-      className={classes.loading}>
-       <p>Завантаження...</p></div>}
+          )
+        })}
+      </ul>
+    }
     </div>
     }
 }
